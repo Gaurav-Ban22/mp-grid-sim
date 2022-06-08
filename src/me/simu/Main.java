@@ -9,33 +9,13 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Random randHandler = new Random();
+
         fillGrid();
         grid[x][y] = "0";
 
-        for (int cycle = 0; cycle < 11; cycle++) {
-            int direction = randHandler.nextInt(4);
-
-            if (direction == 0) {
-                x++;
-            } else if (direction == 1) {
-                y++;
-            } else if (direction == 2) {
-                x--;
-            } else if (direction == 3) {
-                y--;
-            }
-            //will do corner testing later
-            fillGrid();
-            grid[x][y] = "0";
-            printGrid();
-        }
-
-
+        directionalMove();
 
         //testing with set amount of moves
-
-
 
 
     }
@@ -56,5 +36,50 @@ public class Main {
             System.out.println();
         }
 
+    }
+
+    public static void directionalMove() {
+        for (int cycle = 0; cycle < 11; cycle++) {
+            Random randHandler = new Random();
+            int direction = randHandler.nextInt(4);
+
+            if (direction == 0) {
+                if (x < 9) {
+                    x++;
+                }
+                else {
+                    directionalMove();
+                    //haha recursion xd
+                }
+            } else if (direction == 1) {
+                if (y < 9) {
+                    y++;
+                }
+                else {
+                    directionalMove();
+                    //haha recursion xd
+                }
+            } else if (direction == 2) {
+                if (0 < x) {
+                    x--;
+                }
+                else {
+                    directionalMove();
+                    //haha recursion xd
+                }
+            } else if (direction == 3) {
+                if (0 < y) {
+                    y--;
+                }
+                else {
+                    directionalMove();
+                    //haha recursion xd
+                }
+            }
+
+            fillGrid();
+            grid[x][y] = "0";
+            printGrid();
+        }
     }
 }
