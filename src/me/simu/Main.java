@@ -1,7 +1,12 @@
 package me.simu;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Main {
+
+    private static ArrayList<String> visited;
+    //coulda done tuples but its fine
+    // also coulda done class objects but its fine
 
     private static String grid[][] = new String[10][10];
     private static int x = 4;
@@ -9,9 +14,12 @@ public class Main {
 
     public static void main(String[] args) {
 
+        visited = new ArrayList<>();
+
 
         fillGrid();
         grid[x][y] = "0";
+        grid[2][3] = "0";
 
         directionalMove();
 
@@ -42,6 +50,9 @@ public class Main {
         for (int cycle = 0; cycle < 11; cycle++) {
             for (int val = 0; val < grid.length; val++) {
                 for (int value = 0; value < grid[val].length; value++) {
+                    if(visited.contains(val + " " + value)) {
+                        continue;
+                    }
                     if (grid[val][value].equals("0")) {
                         Random randHandler = new Random();
                         int direction = randHandler.nextInt(4);
@@ -83,13 +94,14 @@ public class Main {
 
 
                         grid[val][value] = "0";
+                        visited.add(val + " " + value);
                         printGrid();
                         System.out.println("\n");
                     }
 
                 }
             }
-
+            visited.clear();
 
         }
     }
