@@ -31,7 +31,7 @@ public class Main {
     public static void printGrid() {
         for (int x = 0; x < grid.length; x++) {
             for (int y = 0; y < grid[x].length; y++) {
-                System.out.println(grid[x][y]);
+                System.out.print(grid[x][y] + " ");
             }
             System.out.println();
         }
@@ -80,6 +80,7 @@ public class Main {
             fillGrid();
             grid[x][y] = "0";
             printGrid();
+            System.out.println("\n");
         }
     }
 }
