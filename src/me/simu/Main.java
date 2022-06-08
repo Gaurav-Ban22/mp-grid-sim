@@ -40,47 +40,57 @@ public class Main {
 
     public static void directionalMove() {
         for (int cycle = 0; cycle < 11; cycle++) {
-            Random randHandler = new Random();
-            int direction = randHandler.nextInt(4);
+            for (int val = 0; val < grid.length; val++) {
+                for (int value = 0; value < grid[val].length; value++) {
+                    if (grid[val][value].equals("0")) {
+                        Random randHandler = new Random();
+                        int direction = randHandler.nextInt(4);
+                        grid[val][value] = "-";
 
-            if (direction == 0) {
-                if (x < 9) {
-                    x++;
-                }
-                else {
-                    directionalMove();
-                    //haha recursion xd
-                }
-            } else if (direction == 1) {
-                if (y < 9) {
-                    y++;
-                }
-                else {
-                    directionalMove();
-                    //haha recursion xd
-                }
-            } else if (direction == 2) {
-                if (0 < x) {
-                    x--;
-                }
-                else {
-                    directionalMove();
-                    //haha recursion xd
-                }
-            } else if (direction == 3) {
-                if (0 < y) {
-                    y--;
-                }
-                else {
-                    directionalMove();
-                    //haha recursion xd
+                        if (direction == 0) {
+                            if (val < 9) {
+                                val++;
+                            }
+                            else {
+                                directionalMove();
+                                //haha recursion xd
+                            }
+                        } else if (direction == 1) {
+                            if (value < 9) {
+                                value++;
+                            }
+                            else {
+                                directionalMove();
+                                //haha recursion xd
+                            }
+                        } else if (direction == 2) {
+                            if (0 < val) {
+                                val--;
+                            }
+                            else {
+                                directionalMove();
+                                //haha recursion xd
+                            }
+                        } else if (direction == 3) {
+                            if (0 < value) {
+                                value--;
+                            }
+                            else {
+                                directionalMove();
+                                //haha recursion xd
+                            }
+                        }
+
+
+                        grid[val][value] = "0";
+                        printGrid();
+                        System.out.println("\n");
+                    }
+
                 }
             }
 
-            fillGrid();
-            grid[x][y] = "0";
-            printGrid();
-            System.out.println("\n");
+
         }
     }
 }
